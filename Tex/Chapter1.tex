@@ -1,0 +1,153 @@
+\chapter{引言}\label{chap:intro}
+
+\section{研究背景}\label{sec:background}
+
+深圳大学学位论文模板 szuthesis 基于中国科学院大学学位论文模板 ucasthesis\footnote{\url{https://github.com/mohuangrui/ucasthesis}} 二次开发。
+相对于 ucasthesis ，本项目进行了许多改动，关键的变化如下：
+
+\begin{enumerate}[wide=\parindent]
+    \item 修改相关配置，使其符合深圳大学学位论文印刷格式样式；
+    \item 封装了更多的命令，极大化简了 Thesis.tex 中的内容；
+    \item 化简了许多操作，例如化简了字体相关补丁，遵循ctex字体关于粗体和斜体的相关设定，化简了参考文献格式等；
+    \item 参考了上海交通大学论文模板 SJTUThesis\footnote{\url{https://github.com/sjtug/SJTUThesis}} 的设计思路。
+\end{enumerate}
+
+考虑到许多同学可能缺乏 \LaTeX{} 使用经验，szuthesis 不仅延续了 ucasthesis 的轻易使用的特点，同时封装了更多功能，极大简化了相关逻辑。
+在本文中，对用 \LaTeX{} 撰写论文的一些主要难题，如制图、制表、文献索引等，进行了详细说明，并提供了相应的代码样本，大大降低了初学者的学习成本。
+所以，如果你是初学者，请不要放弃，因为同样为初学者的我，十分明白让 \LaTeX{} 简单易用的重要性，而这正是 szuthesis 所追求和体现的。
+
+当前 szuthesis 模板完美遵循《学术学位硕士学位论文印刷格式样式》与《专业硕士学位论文印刷格式样式》中规定的学位论文撰写要求和封面设定。
+兼顾操作系统 Windows、Linux、MacOS；目前仅支持 Xe\LaTeX{} 引擎；文献编译引擎biber (biblatex)。
+支持中文书签、中文渲染、拷贝 PDF 中的文本到其他文本编辑器等特性。
+
+szuthesis 的目标在于简化学位论文的撰写，充分利用 \LaTeX{} 的优点，例如，使用 git 进行版本控制，专注写作且无需关注格式，更便利的公式书写环境，支持注释等。
+
+
+\section{系统要求}\label{sec:system}
+
+szuthesis 宏包可以在目前主流的 \href{https://en.wikibooks.org/wiki/LaTeX/Introduction}{\LaTeX{}} 发行版中使用，
+如 \TeX{}Live 和 MiK\TeX{}。因 C\TeX{} 套装已停止维护，\textbf{请勿使用}。
+请勿混淆 C\TeX{} 套装\footnote{\url{http://www.ctex.org/CTeX}}与 C\TeX{} 宏集\footnote{\url{https://ctan.org/pkg/ctex?lang=en}}。
+C\TeX{} 套装基于 Windows 下的 MiKTeX 开发，在其基础上增加了对中文的完整支持，已于 2012 年起停止维护。
+而 C\TeX{} 宏集是通用 \LaTeX{} 排版框架，为中文 \LaTeX{} 文档提供了汉字支持，主要包括宏包 ctex 以及中文文档类 ctexart、 ctexbook 等。
+
+推荐的 \LaTeX{} 发行版如下：
+
+\begin{center}
+    %\footnotesize% fontsize
+    %\setlength{\tabcolsep}{4pt}% column separation
+    %\renewcommand{\arraystretch}{1.5}% row space 
+    \begin{tabular}{lc}
+        \toprule
+        操作系统         & \LaTeX{}发行版                                                                                        \\
+        \midrule
+        Linux 或 Windows & \href{https://www.tug.org/texlive/}{\TeX{}Live Full} 或 \href{https://miktex.org/download}{MiK\TeX{}} \\
+        MacOS            & \href{https://www.tug.org/mactex/}{Mac\TeX{} Full} 或 \href{https://miktex.org/download}{MiK\TeX{}}   \\
+        \bottomrule
+    \end{tabular}
+\end{center}
+
+请从各软件官网下载安装程序，勿使用不明程序源。若系统原带有旧版的 \LaTeX{} 发行版并想安装新版，请\textbf{先完全卸载旧版再安装新版}。
+推荐安装2019年后的版本。可能因为网络问题导致安装速度较慢，推荐在安装时无需选择额外宏包，
+安装完成后添加清华源\footnote{\url{https://mirrors.tuna.tsinghua.edu.cn/help/CTAN/}}，再继续安装所需宏包。
+
+如选择部分安装，请安装后检测以下宏包知否安装，若未安装导致的BUG不易排查：
+
+\begin{center}
+    \small% fontsize
+    \renewcommand{\arraystretch}{0.8}% row space 
+    \begin{tabular}{ll}
+        \toprule
+        宏包                 & 功能                    \\
+        \midrule
+        xits                 & 开源Times New Roman字体 \\
+        biber                & biblatex引擎            \\
+        biblatex-gb7714-2015 & biblatex格式            \\
+        latexmk              & 自动编译latex文档       \\
+        \bottomrule
+    \end{tabular}
+\end{center}
+
+安装 \LaTeX{} 发行版后，即可使用任意编辑器开始书写。
+在这里推荐使用 VS Code\footnote{\url{https://code.visualstudio.com/}} 作为编辑器。一方面其可单纯的作为编辑器使用，
+同时又可以搭配插件进行扩展。可以搭配 Git 进行版本控制，又可以安装 LaTeX Workshop 插件直接进行编译。
+LaTeX Workshop 插件提供了诸如 Linting，Formatting，Intellisense，PDF 文件预览，公式预览，
+全文大纲等诸多功能\footnote{\url{https://github.com/James-Yu/LaTeX-Workshop\#features-taster}}。
+使用快捷键可以极大提高编写效率，例如使用 \lstinline!Ctrl+Alt+j! 可以快速从 tex 文本跳转到 PDF 中对应的位置，
+而在PDF预览中使用 \lstinline!Ctrl+鼠标左键! 就可以快速定位对应的 tex 文本。
+
+
+\section{编译}
+
+\begin{enumerate}[wide=\parindent]
+    \item 安装软件：根据所用操作系统和章节~\ref{sec:system} 中的信息安装 \LaTeX{} 编译环境。
+
+    \item 获取模板：下载 szuthesis 项目。szuthesis 不仅提供了相应的模板，同时也提供了编译样例，
+          下载时推荐下载整个 szuthesis 文件夹，而不是单独的 cls 文档类。
+
+    \item 编译模板：参考项目主页编译部分。
+\end{enumerate}
+
+编译完成后即可获得这份说明文档。而这也完成了学习使用 szuthesis 撰写论文的一半进程。
+什么？这就学成一半了，这么简单？？？是的，就这么简单！
+
+
+\section{文档目录简介}
+
+\subsection{Thesis.tex}
+
+Thesis.tex 为主文档，包含了论文全篇的主要架构。其中，document 中的所有内容均可注释后避免其参与编译，包含 maketitle 等命令，
+注释后可能导致章节序号发生错误，无需担心，全文编译后即可恢复。注释后可加快编译速度，例如参考文献页无须随文档实时编译，
+只需要全文完成后编译参考文献页即可，这也是使用 \LaTeX{} 编写文档的优点之一。
+
+\subsection{Temp文件夹}
+
+编译后，生成的临时文件皆存于Temp文件夹内，包括编译得到的 PDF 文档，其存在是为了保持工作空间的整洁，因为好的心情是很重要的。
+
+\subsection{szuthesis.cls}
+
+\verb!texmf\tex\latex\szuthesis\szuthesis.cls! 目录下的 szuthesis.cls 为文档类，定义了论文的核心格式，
+包括论文排版、引用格式、页眉页脚、字体字号等。其中，根据《印刷格式样式》规定，参考文献后的字号均与正文字号不同。
+
+\subsection{config.tex}
+
+szuthesis.cls 需要传入一些参数用来生成封面信息，config.tex 可用来传入这些参数。
+后边则定义了一些可选的宏包，这些宏包并不完全属于《印刷格式样式》规定的排版，可以自由选择是否启用。
+例如数学公式的字体、代码片段、超链接等，均在 config.tex 进行了定义，这些可以根据需要对它进行调整。
+
+\subsection{Tex文件夹}
+
+文件夹内为论文的所有正文内容，这也是使用 szuthesis 撰写学位论文时，主要关注和修改的一个位置。
+\textbf{注：所有文件都必须采用 UTF-8 编码，否则编译后将出现乱码文本}，详细分类介绍如下：
+
+\begin{itemize}
+    \item Abstract.tex：摘要信息。
+    \item ChapterX.tex：论文的各个章节，可根据需要添加和撰写。\textbf{添加新章节时，注意编码格式，可拷贝一个已有的章文件再重命名，以继承文档的 UTF-8 编码}。
+    \item Appendix.tex：附录，注意附录字号与正文不同，仅用于添加补充信息，如有整段文本建议放置于正文中。
+    \item Acknowledgements.tex：致谢。
+    \item Publications.tex: 研究成果。
+\end{itemize}
+
+\subsection{Image文件夹}
+
+用于放置论文中所需要的图形类文件，支持格式有：jpg, png, pdf 等，需要更多支持格式可在 config.tex 中配置。
+不建议为各章节图片建子目录，即使图片众多，若命名规则合理，图片查询亦是十分方便。
+
+\subsection{Biblio文件夹}
+
+ref.bib 为参考文献信息，可在 config.tex 中配置。
+
+\subsection{.vscode文件夹}
+
+这一文件夹用于保存 VS Code 的配置文件，其中 settings.json 保存了部分 latexmk 所需的配置项。
+
+
+
+\section{帮助与问题反馈}\label{sec:help}
+
+对于 \LaTeX{} 相关问题，推荐使用 texdoc 命令查阅相关文档。
+例如安装 lshort-chinese 宏包后，可使用 \textbf{texdoc lshort-chinese} 命令打开一份教程，包含了 \LaTeX{} 入门相关的知识。
+使用 \textbf{texdoc ctex} 则可打开 ctex 宏包的文档，包含中文排版相关的内容，例如第5节中则详细介绍了中文字体字号。
+大多数宏包都提供了非常详尽的文档，都可以使用 texdoc 查阅。
+
+欢迎各位同学提出宝贵意见，一起不断改进模板。

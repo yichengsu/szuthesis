@@ -1,0 +1,190 @@
+%---------------------------------------------------------------------------%
+%->> Cover information 封面信息
+%---------------------------------------------------------------------------%
+\classid{TP391}% 分类号
+\udc{004}
+\confidential{公开}% 密级
+%- 注：\title包含两个参数
+% \title{深圳大学\LaTeX{}模板}{}% 单行题目，第二个参数为空
+\title{新巴塞尔协议风险管理理念与}{我国风险管理体系的构建}% 多行题目
+%- 注：英文题目用于生成Abstract的页眉，只有一个参数
+\TITLE{The Idea of Global Risk Management from the New Basle Capital Accord and the ERM's Constructing of in China}
+\author{唐同学}% 论文作者
+\major{统计学}% 学科专业名称
+%- 注：以下两个类型支持多行
+\institute{计算机与软件学院}% 院系名称单行
+% \institute{某某学院\\某某实验室}% 院系名称多行
+\advisor{张老师\ 教授}% 指导教师单行
+% \advisor{张老师\ 教授\\王老师\ 研究员}% 指导教师多行
+\DEGREE{MasterXS}% 学术硕士
+% \DEGREE{MasterZY}\degree{此处填写学位类别}% 专业硕士
+%---------------------------------------------------------------------------%
+%->> other config
+%---------------------------------------------------------------------------%
+%- 添加两个命令方便输出
+\DeclareRobustCommand\cs[1]{\texttt{\char`\\#1}}
+\providecommand\pkg[1]{{\sffamily#1}}
+%-
+\addbibresource{Biblio/ref.bib}% 参考文献路径
+\setlength\bibitemsep{0.0ex plus 0.2ex minus 0.2ex}% set distance between bib entrie
+%-
+\setcounter{tocdepth}{3}% depth for the table of contents，设为2可不显示subsubsection
+\setcounter{secnumdepth}{3}% depth for section numbering, default is 2
+%-
+%- 某些小语种会超出版面边界，提示Overfull \hbox{}...，中英日韩无需使用(或使用宏包microtype)
+% \setlength\emergencystretch{1em}
+%-
+%- 重新设置 equation, figure, table 的序号
+%\numberwithin{equation}{section}% set enumeration level
+%\renewcommand{\theequation}{\thesection\arabic{equation}}% configure the label style
+%\numberwithin{figure}{section}% set enumeration level
+%\renewcommand{\thefigure}{\thesection\arabic{figure}}% configure the label style
+%\numberwithin{table}{section}% set enumeration level
+%\renewcommand{\thetable}{\thesection\arabic{table}}% configure the label style
+\counterwithout{footnote}{chapter}% footnote编号全局连续
+%-
+%---------------------------------------------------------------------------%
+%->> Package
+%---------------------------------------------------------------------------%
+% -> szuthesis.cls中已经导入的包
+% - etoolbox, a toolbox of programming facilities
+% - geometry, for layout
+% - expl3, LaTeX3 programming environment
+% - array
+% - ulem, underline
+% - xeCJKfntef, underline for CJK
+% - fancyhdr, header and footer
+% - biblatex
+%-
+\usepackage{graphicx}
+\DeclareGraphicsExtensions{.pdf,.jpg,.png,.eps,.tif,.bmp}% 默认图片格式
+\graphicspath{{Image/}}% 默认图片检索路径
+%-
+\usepackage[format=plain,hangindent=2.0em,font={small},skip=8pt,labelsep=space]{caption}
+%-
+\usepackage{subcaption}% 处理子图
+%-
+% \usepackage[list=off]{bicaption} % 双语caption
+% \DeclareCaptionOption{bi-second}[]{
+%     \def\tablename{Table}%
+%     \def\figurename{Figure}%
+% }
+% \captionsetup[bi-second]{bi-second}
+%-
+\usepackage[section]{placeins}% 阻止图片浮动超出当前section
+%-
+\usepackage{enumitem}% 列表环境功能提升
+\setlist{nosep}% 默认文本行间距
+% \setlist[enumerate]{wide=\parindent}% 是否悬挂对齐，不建议全局修改
+% \setlist[itemize]{wide=\parindent}
+%-
+% \usepackage{verbatim}
+%-
+% \usepackage{chemfig}% draw 2D chemical structures
+% \usepackage[version=4]{mhchem}% typeset chemical formulae [mhchem|chemformula]
+%-
+% \usepackage{microtype}% improves general appearance of the text, 启用后降低编译效率
+%-
+% \usepackage{pdflscape}% landscape environment, \begin{landscape} ... \end{landscape}
+%-
+% \usepackage[usenames,dvipsnames,svgnames,table]{xcolor}% color support
+%-
+% \usepackage{tikz}% automatically load pgf package, plot with tex
+% \usetikzlibrary{positioning, arrows, calc, trees }%
+%-
+\usepackage{booktabs}% 三线表
+%-
+\usepackage{listings}% 代码片段
+\def\lstlistingname{代码}
+\lstset{%
+    basicstyle=\linespread{1.2}\small, % 字体
+    breaklines=true,                   % 自动换行
+    frame=lines,                       % 上下的边框，可选none|single|shadowbox等
+    keepspaces=true,
+    showstringspaces=false,            % string的空格添加标记，defaul:true
+    tabsize=2,                         % tab长度
+    % stringstyle=\color{DarkViolet},
+    % backgroundcolor=\color{gray!10},
+    % commentstyle=\color{ForestGreen},
+    % keywordstyle=\color{blue},
+}
+%-
+\usepackage[ruled,vlined,linesnumbered,algochapter]{algorithm2e} % 算法描述
+\SetAlgorithmName{算法}{算法}{}
+%---------------------------------------------------------------------------%
+%->> 配置数学环境
+%---------------------------------------------------------------------------%
+\usepackage{amsmath}
+\usepackage{amssymb}
+%- 符号表，参考 http://milde.users.sourceforge.net/LUCR/Math/mathpackages/amssymb-symbols.pdf
+\usepackage{amsthm} % 定理引理等环境
+\theoremstyle{plain}% for theorems, lemmas, propositions, etc
+\newtheorem{theorem}              {定理} [chapter]
+\newtheorem{axiom}      [theorem] {公理}
+\newtheorem{lemma}      [theorem] {引理}
+\newtheorem{corollary}  [theorem] {推论}
+\newtheorem{assertion}  [theorem] {断言}
+\newtheorem{proposition}[theorem] {命题}
+\newtheorem{conjecture} [theorem] {猜想}
+\newtheorem{assumption} [theorem] {假设}
+\theoremstyle{definition}% for definitions and examples
+\newtheorem{definition}           {定义} [chapter]
+\newtheorem{example}              {例}   [chapter]
+\newtheorem{problem}              {问题} [chapter]
+\newtheorem{exercise}             {练习} [chapter]
+\theoremstyle{remark}% for remarks and notes
+\newtheorem*{remark}              {注}
+\newtheorem*{solution}            {解}
+% \usepackage{mathtools}
+\usepackage{unicode-math}
+%- 注：unicode-math可以配置数学公式字体，注意包冲突！
+%- 已知可能存在冲突的包：amscd,amsfonts,bbm,bm,eucal,eufrak,mathrsfs
+\setmathfont{XITSMath-Regular}[
+    Extension=.otf, BoldFont=XITSMath-Bold, Ligatures=TeX, StylisticSet = 1,
+]
+\setmathfont{XITSMath-Regular}[
+    Extension=.otf, range={scr,bfscr}, Ligatures=TeX, StylisticSet = 2,
+]
+\setmathfont{XITSMath-Regular}[
+    Extension=.otf, range={cal,bfcal}, Ligatures=TeX, StylisticSet = 1,
+]
+% \setmathfont{XITS Math Bold}[version=bold]% for bold version % 不兼容StylisticSet=2
+% \newenvironment{szumathbf}{\bfseries\mathversion{bold}}{}
+\def\XITSMathFontOptions{
+    Extension=.otf, BoldFont=XITSMath-Bold, Ligatures=TeX, StylisticSet = 1
+}
+\setmathrm{XITSMath-Regular}[\XITSMathFontOptions]
+\setmathsf{XITSMath-Regular}[\XITSMathFontOptions]
+\setmathtt{XITSMath-Regular}[\XITSMathFontOptions]
+%-
+\def\boldsymbol#1{\symbfit{#1}}
+\providecommand{\Vector}[1]{\symbfit{#1}}
+\providecommand{\Matrix}[1]{\symbfit{#1}}
+\providecommand{\Tensor}[1]{\symbfit{#1}}
+\providecommand{\Dif}{\symrm{d}}
+\providecommand{\Const}[1]{\symrm{#1}}
+\providecommand{\deltarm}{\symrm{\delta}}
+\providecommand{\Div}{\operatorname{div}}
+\providecommand{\Trace}{\operatorname{tr}}
+%---------------------------------------------------------------------------%
+%->> 链接，生成书签，在最后
+%---------------------------------------------------------------------------%
+\usepackage{hyperref}% 超链接，生成书签，[注：放在最后]
+\hypersetup{% set hyperlinks
+    pdfencoding=auto,% allows non-Latin based languages in bookmarks
+    psdextra=true,% extra support for math symbols in bookmarks
+    bookmarksnumbered=true,% put section numbers in bookmarks
+    pdftitle={\szutitle},% title
+    pdfauthor={\szuauthor},% author
+    pdfsubject={\szutitle},% subject
+    pdfstartview={FitH},% fits the width of the page to the window
+    % colorlinks=true,% false: boxed links; true: colored links
+    % linkcolor=black,% color of internal links
+    % citecolor=blue,% color of links to bibliography
+    % filecolor=blue,% color of file links
+    % urlcolor=blue,% color of external links
+    hidelinks,% hide links color and box
+}
+%---------------------------------------------------------------------------%
+%->> END
+%---------------------------------------------------------------------------%

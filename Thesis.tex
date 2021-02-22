@@ -1,0 +1,56 @@
+%---------------------------------------------------------------------------%
+%->> 深圳大学毕业论文模板
+%---------------------------------------------------------------------------%
+%- 载入模板类
+\documentclass{szuthesis}% 默认形式
+% \documentclass[print]{szuthesis}% 打印预览版本，可以自动生成额外的空白页用于打印
+% \documentclass[fontset=windows|adobe|mac|ubuntu]{szuthesis}% 选择字库
+%---------------------------------------------------------------------------%
+% - 载入配置信息，包含论文封面信息、必要的package
+\input{config}
+%---------------------------------------------------------------------------%
+%- 辅助命令，后文中的所有\include均可在此单独列出，用逗号隔开，
+%- 以此只编译必要的章节，加快编译速度，待全文完成后可注释本命令，即可编译全文。
+%- 也可注释部分内容，正文中所有的内容均可注释后避免其参与编译，包含maketitle等命令，
+%- 执行此命令或注释后可能导致章节序号发生错误，无需担心，全文编译后即可恢复
+% \includeonly{Tex/Abstract,Tex/Appendix}
+% %---------------------------------------------------------------------------%
+\begin{document}
+%-
+\maketitle% 制作封面
+%-
+%- 声明包含两种形式，
+%- 如果参数为空则可自动生成默认声明页，也可设置参数导入签字后的扫描版PDF文件
+% \makedeclaration{declaration}% 制作声明，参数为扫描版文件名，默认在Image下
+\makedeclaration{}% 制作声明，自动生成
+%-
+\frontmatter% 初始化摘要页环境，不建议注释
+%-
+\include{Tex/Abstract}
+%-
+\tableofcontents% 目录
+%-
+\mainmatter% 初始化正文环境，不建议注释
+%-
+\include{Tex/Chapter1}
+\include{Tex/Chapter2}
+% \include{Tex/Chapter3}
+%- 
+\backmatter% 初始化其他部分环境，不建议注释
+%-
+\szubibliography% 导入参考文献
+%-
+\include{Tex/Appendix}% 导入附录
+%-
+%- 2020年新增，添加答辩记录，建议分成三个独立的PDF文件，
+%- \szuaddpdf命令包含两个参数，[]中为可选参数，用于生成目录，{}中为PDF文件名，默认在Image下
+% \szuaddpdf[指导教师对研究生学位论文的学术评语]{pingyu}
+% \szuaddpdf[学位论文答辩委员会决议书]{dabian1}
+%-\szuaddpdf{dabian2}% 前一页生成目录即可
+%-
+\include{Tex/Acknowledgements}% 导入致谢
+%-
+\include{Tex/Publications}% 导入研究成果
+%-
+\end{document}
+% %---------------------------------------------------------------------------%
